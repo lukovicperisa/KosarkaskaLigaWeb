@@ -12,56 +12,56 @@
         <div class="container">
             <ui:include src="header.xhtml"/>
 
-            <div class="page-headline">
+            <div class="naslov-stranice">
                 <c:choose>
                     <c:when test="#{mbKlub.trenutniKlub.naziv==null}" >
-                        <h:outputText value="#{msg['club.registration.title.registration']}"/>
+                        <h:outputText value="#{msg['klub.registracija.naslov.registracija']}"/>
                     </c:when>
                     <c:otherwise >
-                        <h:outputText value="#{msg['club.registration.title.update']}"/>
+                        <h:outputText value="#{msg['klub.registracija.naslov.izmena']}"/>
                     </c:otherwise>
                 </c:choose>
             </div>
-            <div class="register">
-                <div class="success-message">
-                    <h:inputHidden id="clubStatus"/>
-                    <h:message for="clubStatus"/>
+            <div class="registracija">
+                <div class="status-uspeh">
+                    <h:inputHidden id="statusRegistracije"/>
+                    <h:message for="statusRegistracije"/>
                 </div>
                 <h:form  enctype="multipart/form-data">
-                    <div class="registration-section">
-                        <label for="name">#{msg['club.registration.name']}</label>
-                        <h:inputText id="name" value="#{mbKlub.trenutniKlub.naziv}" validatorMessage="#{msg['validation.club.name.message']}"
-                                     a:placeholder="#{msg['club.registration.name.placeholder']}">
+                    <div class="registracija-sekcija">
+                        <label for="naziv">#{msg['klub.registracija.naziv']}</label>
+                        <h:inputText id="naziv" value="#{mbKlub.trenutniKlub.naziv}" validatorMessage="#{msg['validacija.klub.naziv.poruka']}"
+                                     a:placeholder="#{msg['klub.registracija.naziv.plejsholder']}">
                             <f:validateRequired/>
                         </h:inputText>
-                        <h:message class="validation-message" for="name"/>
+                        <h:message class="poruka-validatora" for="naziv"/>
                     </div>
-                    <div class="registration-section">
-                        <label for="description">#{msg['club.registration.description']}</label>
-                        <h:inputTextarea id="description" value="#{mbKlub.trenutniKlub.opis}"/>
+                    <div class="registracija-sekcija">
+                        <label for="opis">#{msg['klub.registracija.opis']}</label>
+                        <h:inputTextarea id="opis" value="#{mbKlub.trenutniKlub.opis}"/>
                     </div>
-                    <div class="registration-section">
-                        <label for="arena">#{msg['club.registration.arena']}</label>
-                        <h:inputText id="arena" value="#{mbKlub.trenutniKlub.arena}" validatorMessage="#{msg['validation.club.arena.message']}"
-                                     a:placeholder="#{msg['club.registration.arena.placeholder']}">
+                    <div class="registracija-sekcija">
+                        <label for="arena">#{msg['klub.registracija.arena']}</label>
+                        <h:inputText id="arena" value="#{mbKlub.trenutniKlub.arena}" validatorMessage="#{msg['validacija.klub.arena.poruka']}"
+                                     a:placeholder="#{msg['klub.registracija.arena.plejsholder']}">
                             <f:validateRequired/>
                         </h:inputText>
-                        <h:message class="validation-message" for="arena"/>
+                        <h:message class="poruka-validatora" for="arena"/>
                     </div>
-                    <div class="registration-section">
-                        <label for="picture">#{msg['club.registration.picture']}</label>
-                        <h:inputFile id="picture" value="#{slika}">
+                    <div class="registracija-sekcija">
+                        <label for="slika">#{msg['klub.registracija.slika']}</label>
+                        <h:inputFile id="slika" value="#{slika}">
                             <f:validator validatorId="slikaValidator"/>
                         </h:inputFile>
-                        <h:message class="validation-message" for="picture"/>
+                        <h:message class="poruka-validatora" for="slika"/>
                     </div>
-                    <div class="registration-section">
-                        <label for="country">#{msg['club.registration.country']}</label>
-                        <h:selectOneMenu id="country" value ="#{mbKlub.trenutniKlub.drzava}" converter="#{drzavaKNV}">
+                    <div class="registracija-sekcija">
+                        <label for="drzava">#{msg['klub.registracija.drzava']}</label>
+                        <h:selectOneMenu id="drzava" value ="#{mbKlub.trenutniKlub.drzava}" converter="#{drzavaKNV}">
                             <f:selectItems value="#{mbDrzava.drzave}" var="drzava" itemValue="#{drzava}" itemLabel="#{drzava.naziv}"/>
                         </h:selectOneMenu>
                     </div>
-                    <h:commandButton action="#{mbKlub.sacuvaj(slika)}" class="btn btn-default" value="#{msg['club.registration.save']}" />
+                    <h:commandButton action="#{mbKlub.sacuvaj(slika)}" class="btn btn-default" value="#{msg['klub.registracija.sacuvaj']}" />
                 </h:form>
             </div>
 

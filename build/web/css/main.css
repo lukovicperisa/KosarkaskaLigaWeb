@@ -35,7 +35,7 @@ header ul {
     text-decoration: none;
 }
 
-.index-image{
+.index-slika{
     width: 100%;
     padding-top: 20px;
 }
@@ -49,24 +49,24 @@ footer {
     font-size: 10px;
 }
 
-.club-image {
+.klub-slika {
     width: 200px;
     height: 200px;
     padding-bottom: 10px;
 }
 
-.club-details {
+.klub-detalji {
     display: inline-block;
     padding-left: 50px;
     text-align: center;
 }
 
-.club-details img { 
+.klub-detalji img { 
     width: 350px;
     height: 350px;
 }
 
-.register {
+.registracija {
     padding: 0 50px 50px 50px;
     width: 60%;
     margin: 0 auto;
@@ -92,24 +92,24 @@ input[type=submit]{
     cursor: pointer;
 }
 
-.page-headline {
+.naslov-stranice {
     text-align: center;
     color: black;
     font-size: 40px;
     padding: 20px 5px 80px 0;
 }
 
-.page-headline .nav-link{
+.naslov-stranice .nav-link{
     float: right;
 }
 
-.club-grid{
+.klub-grid{
     text-align: center;
     padding-bottom: 15px;
     padding-top: 15px;
 }
 
-.club-description{
+.klub-opis{
     margin-top: 50px;
     margin-right: 15px;
     padding-top: 10px;
@@ -118,46 +118,46 @@ input[type=submit]{
     float: right;
 }
 
-.club-label{
+.klub-labela{
     padding-left: 10px;
     padding-bottom: 20px;
     font-size: 18px;
 }
 
-.club-text{
+.klub-tekst{
     padding-left: 10px;
     padding-bottom: 20px;
     font-weight: normal;
     font-size: 18px;
 }
 
-.club-trophies{
+.klub-trofeji{
     margin: 20px;
     padding-top: 20px;
 }
 
-.registration-section{
+.registracija-sekcija{
     padding-bottom: 15px;
 }
 
-.validation-message{
+.poruka-validatora{
     color: red;
     font-weight: bold;
     margin-top: 10px;
 }
 
-.success-message{
+.status-uspeh{
     font-size: 18px;
     font-weight: bold;
     color: green;
     margin-bottom: 15px;
 }
 
-.league-page{
+.liga-stranica{
     padding: 30px 20px 0 20px;
 }
 
-.select-options{
+.opcije{
     display: flex;
     padding-bottom: 20px;
 }
@@ -167,10 +167,10 @@ table{
     border-radius: 10px;
 }
 
-.game-result{
+.rezultat-utakmice{
     padding-top: 20px;
 }
 
-.submit-game{
+.potvrda-utakmice{
     padding-top: 30px;
 }

@@ -39,7 +39,7 @@ public class KlubServis {
     @EJB
     private SezonaDAO sezonaDAO;
     
-    private final ResourceBundle bundle = ResourceBundle.getBundle("resourceBundle.base");
+    private final ResourceBundle bundle = ResourceBundle.getBundle("rb.prevodi");
 
     public List<Klub> vratiSveKlubove() {
         return klubDAO.vratiSveKlubove();
@@ -56,7 +56,7 @@ public class KlubServis {
             klub.setKlubID(generisiID());
             klubDAO.sacuvaj(klub);
         }
-        dodajPoruku("clubStatus","club.registration.status.message");
+        dodajPoruku("statusRegistracije","klub.registracija.status.poruka");
     }
     
     private Integer generisiID() {
@@ -70,7 +70,7 @@ public class KlubServis {
 
     public void sacuvajSliku(Klub klub, Part img) {
         try {
-            Path slika = new File(bundle.getString("site.images.folder"), img.getSubmittedFileName()).toPath();
+            Path slika = new File(bundle.getString("sajt.slike.folder"), img.getSubmittedFileName()).toPath();
             Files.copy(img.getInputStream(), slika, StandardCopyOption.REPLACE_EXISTING);
             klub.setSlika("img/" + img.getSubmittedFileName());
         } catch (IOException ex) {

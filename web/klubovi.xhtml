@@ -10,20 +10,20 @@
         <div class="container">  
             <ui:include src="header.xhtml"/>
 
-            <div class="page-headline">
-                <h:outputLabel value="#{msg['clubs.headline']}"/>
+            <div class="naslov-stranice">
+                <h:outputLabel value="#{msg['klubovi.naslov']}"/>
                 <h:form>
-                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['clubs.navigation.registration']}" 
+                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['klubovi.navigacija.registracija']}" 
                                    actionListener="#{mbKlub.resetujTrenutniKlub()}" />
                 </h:form>
             </div>
 
             <div class="row container">
                 <c:forEach var="klub"  items="#{mbKlub.klubovi}">
-                    <div class="col-xs-12 col-md-3 club-grid">
+                    <div class="col-xs-12 col-md-3 klub-grid">
                         <h:form>
                             <h:commandLink class="nav-link" action="#{mbStranice.detaljiKluba()}" actionListener="#{mbKlub.setTrenutniKlub(klub)}">
-                                <img class="club-image" src="#{klub.slika}"/>
+                                <img class="klub-slika" src="#{klub.slika}"/>
                                 <p>#{klub.naziv}</p>
                             </h:commandLink>
                         </h:form>

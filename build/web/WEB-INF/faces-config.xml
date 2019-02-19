@@ -7,11 +7,11 @@
     
     <application>
         <resource-bundle>
-            <base-name>resourceBundle.base</base-name>
+            <base-name>rb.prevodi</base-name>
             <var>msg</var>
         </resource-bundle>
         <message-bundle>
-            messageBundle.validatorMessages
+            rb.validacija
         </message-bundle>
     </application>
 </faces-config>

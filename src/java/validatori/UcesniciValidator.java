@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package validators;
+package validatori;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -27,16 +27,16 @@ public class UcesniciValidator extends AbstraktniValidator implements Validator 
         if (klubovi != null) {
             int brojKlubova = klubovi.size();
             if (brojKlubova == 0) {
-                throw new ValidatorException(new FacesMessage(bundle.getString("validation.league.participants.required")));
+                throw new ValidatorException(new FacesMessage(bundle.getString("validacija.liga.ucesnici.obavezno")));
             }
             if (brojKlubova < 4) {
-                throw new ValidatorException(new FacesMessage(bundle.getString("validation.league.participants.minimum")));
+                throw new ValidatorException(new FacesMessage(bundle.getString("validacija.liga.ucesnici.minimum")));
             }
             if (brojKlubova > 16) {
-                throw new ValidatorException(new FacesMessage(bundle.getString("validation.league.participants.maximum")));
+                throw new ValidatorException(new FacesMessage(bundle.getString("validacija.liga.ucesnici.maksimum")));
             }
             if (brojKlubova % 2 != 0) {
-                throw new ValidatorException(new FacesMessage(bundle.getString("validation.league.participants.even")));
+                throw new ValidatorException(new FacesMessage(bundle.getString("validacija.liga.ucesnici.paran")));
             }
         }
     }

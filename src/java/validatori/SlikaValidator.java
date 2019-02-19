@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package validators;
+package validatori;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -25,7 +25,7 @@ public class SlikaValidator extends AbstraktniValidator implements Validator {
         Part file = (Part) value;
         if (file != null) {
             if (!file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png")) {
-                throw new ValidatorException(new FacesMessage(bundle.getString("validation.club.picture.message")));
+                throw new ValidatorException(new FacesMessage(bundle.getString("validacija.klub.slika.poruka")));
             }
         }
     }

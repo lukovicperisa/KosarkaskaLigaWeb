@@ -11,54 +11,54 @@
         <div class="container">
             <ui:include src="header.xhtml"/>
 
-            <div class="page-headline">
-                <h:outputText value="#{msg['league.registration']}" />
+            <div class="naslov-stranice">
+                <h:outputText value="#{msg['liga.registracija']}" />
             </div>
-            <div class="register">
-                <div class="success-message">
-                    <h:inputHidden id="seasonStatus"/>
-                    <h:message for="seasonStatus"/>
+            <div class="registracija">
+                <div class="status-uspeh">
+                    <h:inputHidden id="statusRegistracije"/>
+                    <h:message for="statusRegistracije"/>
                 </div>
                 <h:form>
-                    <div class="registration-section">
-                        <label for="leagueName">#{msg['league.registration.name']}</label>
-                        <h:inputText id="leagueName" value="#{mbSezona.trenutnaSezona.nazivLige}" validatorMessage="#{msg['validation.league.name.message']}"
-                                     a:placeholder="#{msg['league.registration.name.placeholder']}">
+                    <div class="registracija-sekcija">
+                        <label for="nazivLige">#{msg['liga.registracija.naziv']}</label>
+                        <h:inputText id="nazivLige" value="#{mbSezona.trenutnaSezona.nazivLige}" validatorMessage="#{msg['validacija.liga.naziv.poruka']}"
+                                     a:placeholder="#{msg['liga.registracija.naziv.plejsholder']}">
                             <f:validateRequired/>
                         </h:inputText>
-                        <h:message class="validation-message" for="leagueName"/>
+                        <h:message class="poruka-validatora" for="nazivLige"/>
                     </div>
-                    <div class="registration-section">
-                        <label for="startDate">#{msg['league.registration.date.beginning']}</label>
-                        <h:inputText id="startDate" converter="#{datumKNV}" value="#{mbSezona.trenutnaSezona.datumPocetka}" a:placeholder="#{msg['league.registration.date.beginning.placeholder']}">
+                    <div class="registracija-sekcija">
+                        <label for="datumPocetka">#{msg['liga.registracija.datum.pocetak']}</label>
+                        <h:inputText id="datumPocetka" converter="#{datumKNV}" value="#{mbSezona.trenutnaSezona.datumPocetka}" a:placeholder="#{msg['liga.registracija.datum.pocetak.plejsholder']}">
                             <f:convertDateTime pattern="yyyy-MM-dd"/>
                         </h:inputText>
-                        <h:message class="validation-message" for="startDate"/>
+                        <h:message class="poruka-validatora" for="datumPocetka"/>
                     </div>
-                    <div class="registration-section">
-                        <label for="endDate">#{msg['league.registration.date.end']}</label>
-                        <h:inputText id="endDate" converter="#{datumKNV}" value="#{mbSezona.trenutnaSezona.datumZavrsetka}" a:placeholder="#{msg['league.registration.date.end.placeholder']}">
+                    <div class="registracija-sekcija">
+                        <label for="datumZavrsetka">#{msg['liga.registracija.datum.zavrsetak']}</label>
+                        <h:inputText id="datumZavrsetka" converter="#{datumKNV}" value="#{mbSezona.trenutnaSezona.datumZavrsetka}" a:placeholder="#{msg['liga.registracija.datum.zavrsetak.plejsholder']}">
                             <f:convertDateTime pattern="yyyy-MM-dd"/>
                         </h:inputText>
-                        <h:message class="validation-message" for="endDate"/>
+                        <h:message class="poruka-validatora" for="datumZavrsetka"/>
                     </div>  
-                   <div class="registration-section">
-                        <label for="system">#{msg['league.registration.round.system']}</label>
-                        <h:selectOneMenu id="system" value ="#{mbSezona.trenutnaSezona.sistem}">
-                            <f:selectItem itemLabel="#{msg['league.registration.round.system.option.single']}" itemValue="#{msg['league.registration.round.system.option.single.value']}" />
-                            <f:selectItem itemLabel="#{msg['league.registration.round.system.option.double']}" itemValue="#{msg['league.registration.round.system.option.double.value']}" />
+                   <div class="registracija-sekcija">
+                       <label for="sistem">#{msg['liga.registracija.kolo.sistem']}</label>
+                        <h:selectOneMenu id="sistem" value ="#{mbSezona.trenutnaSezona.sistem}">
+                            <f:selectItem itemLabel="#{msg['liga.registracija.kolo.sistem.opcija.jednokruzni']}" itemValue="#{msg['liga.registracija.kolo.sistem.opcija.jednokruzni.vrednost']}" />
+                            <f:selectItem itemLabel="#{msg['liga.registracija.kolo.sistem.opcija.dvokruzni']}" itemValue="#{msg['liga.registracija.kolo.sistem.opcija.dvokruzni.vrednost']}" />
                         </h:selectOneMenu>
                     </div>
-                    <div class="registration-section">
-                        <label for="participants">#{msg['league.registration.participants']}</label>
-                        <h:selectManyListbox id="participants" value ="#{mbSezona.klubovi}" converter="#{klubKNV}">
+                    <div class="registracija-sekcija">
+                        <label for="ucesnici">#{msg['liga.registracija.ucesnici']}</label>
+                        <h:selectManyListbox id="ucesnici" value ="#{mbSezona.klubovi}" converter="#{klubKNV}">
                             <f:selectItems value="#{mbKlub.klubovi}" var="klub" itemValue="#{klub}" itemLabel="#{klub.naziv}" />
                             <f:validator validatorId="ucesniciValidator"/>
                         </h:selectManyListbox>
-                        <h:message class="validation-message" for="participants"/>
+                        <h:message class="poruka-validatora" for="ucesnici"/>
                     </div>
                     <f:event listener="#{mbSezona.validirajDatume}" type="postValidate"/>
-                    <h:commandButton action="#{mbSezona.sacuvaj()}" value="#{msg['league.registration.save']}"/>
+                    <h:commandButton action="#{mbSezona.sacuvaj()}" value="#{msg['liga.registracija.sacuvaj']}"/>
                 </h:form>
             </div>
 

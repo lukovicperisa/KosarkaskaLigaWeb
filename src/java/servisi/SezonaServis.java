@@ -23,7 +23,7 @@ import mb.MBSezona;
 import model.Klub;
 import model.Ucesnik;
 import model.Sezona;
-import validators.DatumValidator;
+import validatori.DatumValidator;
 
 /**
  *
@@ -47,7 +47,7 @@ public class SezonaServis {
     @Inject
     private DatumValidator datumValidator;
     
-    private final ResourceBundle bundle = ResourceBundle.getBundle("resourceBundle.base");
+    private final ResourceBundle bundle = ResourceBundle.getBundle("rb.prevodi");
 
     public List<Sezona> vratiSveSezone() {
         return sezonaDAO.vratiSveSezone();
@@ -72,7 +72,7 @@ public class SezonaServis {
         sezonaDAO.sacuvaj(sezona);
         koloServis.kreirajKola(sezona);
         koloServis.generisiRaspored(sezona);
-        postaviPoruku("seasonStatus","league.registration.status.message");
+        postaviPoruku("statusRegistracije","liga.registracija.status.poruka");
     }
 
     private Integer generisiID() {

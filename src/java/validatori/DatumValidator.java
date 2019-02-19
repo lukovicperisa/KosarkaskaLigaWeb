@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package validators;
+package validatori;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -22,15 +22,15 @@ public class DatumValidator extends AbstraktniValidator{
     
     public void validirajDatume(ComponentSystemEvent event) {
         UIComponent komponenta = event.getComponent();
-        UIInput komponentaPocetak = (UIInput) komponenta.findComponent("startDate");
-        UIInput komponentaZavrsetak = (UIInput) komponenta.findComponent("endDate");
+        UIInput komponentaPocetak = (UIInput) komponenta.findComponent("datumPocetka");
+        UIInput komponentaZavrsetak = (UIInput) komponenta.findComponent("datumZavrsetka");
         String poljeIspisa = komponentaZavrsetak.getClientId();
         
         String pocetakString = vratiKomponentuKaoString(komponentaPocetak);
         String zavrsetakString = vratiKomponentuKaoString(komponentaZavrsetak);
 
         if (pocetakString.isEmpty() || zavrsetakString.isEmpty()) {
-            dodajPoruku(poljeIspisa, "validation.season.date.empty");
+            dodajPoruku(poljeIspisa, "validacija.sezona.datum.prazan");
             return;
         }
         
@@ -41,7 +41,7 @@ public class DatumValidator extends AbstraktniValidator{
         LocalDate datumZavrsetka = datum2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         if (!datumPocetka.isBefore(datumZavrsetka)) {
-            dodajPoruku(poljeIspisa, "validation.season.date");
+            dodajPoruku(poljeIspisa, "validacija.sezona.datum");
         }
 
     }

@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import model.Utakmica;
 import model.Ucesnik;
 import model.Kolo;
-import validators.UtakmicaValidator;
+import validatori.UtakmicaValidator;
 
 /**
  *
@@ -44,7 +44,7 @@ public class UtakmicaServis {
     @Inject
     private UtakmicaValidator utakmicaValidator;
 
-    ResourceBundle bundle = ResourceBundle.getBundle("resourceBundle.base");
+    ResourceBundle bundle = ResourceBundle.getBundle("rb.prevodi");
 
     void kreirajUtakmice(Kolo kolo) {
         int brojUtakmica = kolo.getSezona().getListaUcesnika().size() / 2;

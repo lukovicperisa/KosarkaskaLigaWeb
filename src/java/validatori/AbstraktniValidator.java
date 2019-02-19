@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package validators;
+package validatori;
 
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
@@ -16,7 +16,7 @@ import javax.faces.context.FacesContext;
  */
 public abstract class AbstraktniValidator {
     
-    ResourceBundle bundle = ResourceBundle.getBundle("resourceBundle.base");
+    ResourceBundle bundle = ResourceBundle.getBundle("rb.prevodi");
     
     protected String vratiKomponentuKaoString(UIInput komponenta) {
         return komponenta.getLocalValue() == null ? "" : komponenta.getLocalValue().toString();

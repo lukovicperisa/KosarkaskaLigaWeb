@@ -9,35 +9,35 @@
         <div class="container">
             <ui:include src="header.xhtml"/>
 
-            <div class="page-headline">
+            <div class="naslov-stranice">
                 <h:outputLabel value="#{mbKlub.trenutniKlub.naziv}"/>
                 <h:form>
-                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['club.details.navigation.update']}" />
+                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['klub.detalji.navigacija.izmena']}" />
                 </h:form>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-6 club-details">
+                <div class="col-xs-12 col-md-6 klub-detalji">
                     <img src="#{mbKlub.trenutniKlub.slika}"/>
                 </div>
-                <div class="col-xs-12 col-md-5 club-description">                    
+                <div class="col-xs-12 col-md-5 klub-opis">                    
                     <div class="row">
-                        <h:outputLabel class="club-label" value="#{msg['club.details.country']}"/>
-                        <h:outputLabel class="club-text" value="#{mbKlub.trenutniKlub.drzava.naziv}"/>
+                        <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.drzava']}"/>
+                        <h:outputLabel class="klub-tekst" value="#{mbKlub.trenutniKlub.drzava.naziv}"/>
                     </div>                             
                     <div class="row">
-                        <h:outputLabel class="club-label" value="#{msg['club.details.arena']}"/>
-                        <h:outputLabel class="club-text" value="#{mbKlub.trenutniKlub.arena}"/>
+                        <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.arena']}"/>
+                        <h:outputLabel class="klub-tekst" value="#{mbKlub.trenutniKlub.arena}"/>
                     </div>
                     <div class="row">
-                        <h:outputLabel class="club-label" value="#{msg['club.details.description']}"/>
-                        <h:outputLabel class="club-text" value="#{mbKlub.trenutniKlub.opis}"/>
+                        <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.opis']}"/>
+                        <h:outputLabel class="klub-tekst" value="#{mbKlub.trenutniKlub.opis}"/>
                     </div> 
                 </div>          
             </div>      
             <div class="row">
-                <div class="col-xs-12 club-trophies">
-                    <h:outputLabel class="club-label" value="#{msg['club.details.trophies']}"/>
-                    <h:outputLabel class="club-label" value="#{mbKlub.pobednickeSezone}"/>
+                <div class="col-xs-12 klub-trofeji">
+                    <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.trofeji']}"/>
+                    <h:outputLabel class="klub-labela" value="#{mbKlub.pobednickeSezone}"/>
                 </div>
             </div>
             
