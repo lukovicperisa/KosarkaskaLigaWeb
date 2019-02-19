@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:include src="importi.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <ui:include src="header.xhtml"/>
+
+            <div class="page-headline">
+                <c:choose>
+                    <c:when test="#{mbKlub.trenutniKlub.naziv==null}" >
+                        <h:outputText value="#{msg['club.registration.title.registration']}"/>
+                    </c:when>
+                    <c:otherwise >
+                        <h:outputText value="#{msg['club.registration.title.update']}"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="register">
+                <div class="success-message">
+                    <h:inputHidden id="clubStatus"/>
+                    <h:message for="clubStatus"/>
+                </div>
+                <h:form  enctype="multipart/form-data">
+                    <div class="registration-section">
+                        <label for="name">#{msg['club.registration.name']}</label>
+                        <h:inputText id="name" value="#{mbKlub.trenutniKlub.naziv}" validatorMessage="#{msg['validation.club.name.message']}"
+                                     a:placeholder="#{msg['club.registration.name.placeholder']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message class="validation-message" for="name"/>
+                    </div>
+                    <div class="registration-section">
+                        <label for="description">#{msg['club.registration.description']}</label>
+                        <h:inputTextarea id="description" value="#{mbKlub.trenutniKlub.opis}"/>
+                    </div>
+                    <div class="registration-section">
+                        <label for="arena">#{msg['club.registration.arena']}</label>
+                        <h:inputText id="arena" value="#{mbKlub.trenutniKlub.arena}" validatorMessage="#{msg['validation.club.arena.message']}"
+                                     a:placeholder="#{msg['club.registration.arena.placeholder']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message class="validation-message" for="arena"/>
+                    </div>
+                    <div class="registration-section">
+                        <label for="picture">#{msg['club.registration.picture']}</label>
+                        <h:inputFile id="picture" value="#{slika}">
+                            <f:validator validatorId="slikaValidator"/>
+                        </h:inputFile>
+                        <h:message class="validation-message" for="picture"/>
+                    </div>
+                    <div class="registration-section">
+                        <label for="country">#{msg['club.registration.country']}</label>
+                        <h:selectOneMenu id="country" value ="#{mbKlub.trenutniKlub.drzava}" converter="#{drzavaKNV}">
+                            <f:selectItems value="#{mbDrzava.drzave}" var="drzava" itemValue="#{drzava}" itemLabel="#{drzava.naziv}"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <h:commandButton action="#{mbKlub.sacuvaj(slika)}" class="btn btn-default" value="#{msg['club.registration.save']}" />
+                </h:form>
+            </div>
+
+            <ui:include src="footer.xhtml"/>
+        </div>
+    </h:body>
+</html>

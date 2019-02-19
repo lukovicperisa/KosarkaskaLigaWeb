@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:include src="importi.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <ui:include src="header.xhtml"/>
+
+            <div class="page-headline">
+                <h:outputLabel value="#{mbKlub.trenutniKlub.naziv}"/>
+                <h:form>
+                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['club.details.navigation.update']}" />
+                </h:form>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 club-details">
+                    <img src="#{mbKlub.trenutniKlub.slika}"/>
+                </div>
+                <div class="col-xs-12 col-md-5 club-description">                    
+                    <div class="row">
+                        <h:outputLabel class="club-label" value="#{msg['club.details.country']}"/>
+                        <h:outputLabel class="club-text" value="#{mbKlub.trenutniKlub.drzava.naziv}"/>
+                    </div>                             
+                    <div class="row">
+                        <h:outputLabel class="club-label" value="#{msg['club.details.arena']}"/>
+                        <h:outputLabel class="club-text" value="#{mbKlub.trenutniKlub.arena}"/>
+                    </div>
+                    <div class="row">
+                        <h:outputLabel class="club-label" value="#{msg['club.details.description']}"/>
+                        <h:outputLabel class="club-text" value="#{mbKlub.trenutniKlub.opis}"/>
+                    </div> 
+                </div>          
+            </div>      
+            <div class="row">
+                <div class="col-xs-12 club-trophies">
+                    <h:outputLabel class="club-label" value="#{msg['club.details.trophies']}"/>
+                    <h:outputLabel class="club-label" value="#{mbKlub.pobednickeSezone}"/>
+                </div>
+            </div>
+            
+            <ui:include src="footer.xhtml"/>
+        </div>
+    </h:body>
+</html>

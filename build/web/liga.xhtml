@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <ui:include src="importi.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <ui:include src="header.xhtml"/>
+
+            <div class="page-headline">
+                <h:panelGroup id="headline"><c:choose>
+                        <c:when test="#{mbSezona.trenutnaSezona.sezonaID==null}">
+                            <h:outputText value="#{msg['league.page']}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <h:outputText value="#{mbSezona.trenutnaSezona.nazivLige}"/>
+                            <c:if test="#{mbSezona.trenutnaSezona.sampion != null}">
+                                <br></br>
+                                <h:outputText value="#{msg['league.champion.text']}"/>
+                                <h:outputText value="#{mbSezona.trenutnaSezona.sampion.naziv}"/>
+                            </c:if>
+                        </c:otherwise>
+                    </c:choose>
+                    <h:form>
+                        <h:commandLink class="nav-link" action="#{mbStranice.registracijaSezone()}" value="#{msg['league.registration']}" 
+                                       actionListener="#{mbKlub.resetujTrenutniKlub()}" >
+                            <f:actionListener binding="#{mbSezona.resetujTrenutnuSezonu()}" />
+                            <f:actionListener binding="#{mbKolo.resetujKolo()}" />
+                        </h:commandLink>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+            <div class="row league-page">
+                <div class="col-xs-12 col-md-8">
+                    <h:form>
+                        <label>#{msg['league.season']}</label>
+                        <div class="select-options">
+                            <h:selectOneMenu id="season" value ="#{mbSezona.trenutnaSezona}" converter="#{sezonaKNV}">
+                                <c:if test="#{empty mbSezona.trenutnaSezona.sezonaID}">
+                                    <f:selectItem value="#{null}" itemLabel="#{msg['league.season.option']}"/>
+                                </c:if>
+                                <f:selectItems value="#{mbSezona.sezone}" var="sezona" itemValue="#{sezona}" itemLabel="#{sezona.nazivLige}"/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="#{msg['league.season.choose']}">
+                                <p:ajax process="@form" update="season :everything :table :headline"/>
+                                <f:actionListener binding="#{mbKolo.resetujKolo()}" />
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                    <h:panelGroup id="everything">
+                        <c:if test="#{not empty mbSezona.trenutnaSezona.sezonaID}">
+                            <h:form id="roundForm">
+                                <label>#{msg['league.round']}</label>
+                                <h:selectOneMenu value="#{mbKolo.trenutnoKolo}" converter="#{koloKNV}">
+                                    <c:if test="#{empty mbKolo.trenutnoKolo.koloID}">
+                                        <f:selectItem value="#{null}" itemLabel="#{msg['league.round.option']}"/>
+                                    </c:if>
+                                    <f:selectItems value="#{mbKolo.vratiKola(mbSezona.trenutnaSezona)}" var="sezona" itemValue="#{sezona}" itemLabel="#{sezona.brojKola+1}"/>
+                                    <p:ajax event="change" update="roundForm :display"/>
+                                </h:selectOneMenu>
+                            </h:form>
+                            <h:panelGroup id="display">
+                                <c:forEach items="#{mbKolo.trenutnoKolo.listaUtakmica}" var="utakmica">
+                                    <div class="row game-result">
+                                        <h:form>    
+                                            <div class="col-xs-12 col-md-4">
+                                                <label>#{utakmica.domacin.naziv}</label>
+                                                <h:inputText id="pointsHome" value="#{utakmica.poenaDomaci}" 
+                                                             validatorMessage="#{msg['validation.game.regex']}">
+                                                    <f:validateRequired />
+                                                    <f:validateLongRange minimum="0" maximum="200"/>
+                                                </h:inputText>
+                                                <h:message class="validation-message" for="pointsHome"/>
+                                            </div>
+                                            <div class="col-xs-12 col-md-4">
+                                                <label>#{utakmica.gost.naziv}</label>
+                                                <h:inputText id="pointsAway" value="#{utakmica.poenaGosti}"
+                                                             validatorMessage="#{msg['validation.game.regex']}">
+                                                    <f:validateRequired/>
+                                                    <f:validateLongRange minimum="0" maximum="200"/>
+                                                </h:inputText>
+                                                <h:message class="validation-message" for="pointsAway"/>
+                                            </div>
+                                            <div class="col-xs-12 col-md-4 submit-game">
+                                                <f:event listener="#{mbUtakmica.validirajUtakmicu}" type="postValidate"/>
+                                                <h:commandButton action="#{mbUtakmica.azuriraj(utakmica)}" value="#{msg['league.game.save']}">
+                                                    <p:ajax process="@form" update="@form :table :headline"/>
+                                                </h:commandButton>  
+                                            </div>                            
+                                        </h:form>
+                                    </div>
+                                </c:forEach>
+                            </h:panelGroup>
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <ui:include src="tabela.xhtml"/>
+                </div>
+            </div>
+
+            <ui:include src="footer.xhtml"/>
+        </div>        
+    </h:body>
+</html>

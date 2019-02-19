@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <h:panelGroup id="table">
+            <c:if test="#{not empty mbSezona.rangLista}">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#{msg['league.table.label.1']}</th>
+                            <th scope="col">#{msg['league.table.label.2']}</th>
+                            <th scope="col">#{msg['league.table.label.3']}</th>
+                            <th scope="col">#{msg['league.table.label.4']}</th>
+                            <th scope="col">#{msg['league.table.label.5']}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{mbSezona.rangLista}" var="klub" varStatus="i">
+                            <tr>
+                                <th scope="row">#{i.index+1}</th>
+                                <td>#{klub.klub.naziv}</td>
+                                <td>#{klub.brojOdigranihUtakmica}</td>
+                                <td>#{klub.brojPobeda}</td>
+                                <td>#{klub.brojOdigranihUtakmica+klub.brojPobeda}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </c:if>
+        </h:panelGroup>
+    </h:body>
+</html>

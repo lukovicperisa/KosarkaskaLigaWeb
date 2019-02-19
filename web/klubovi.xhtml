@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:include src="importi.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container">  
+            <ui:include src="header.xhtml"/>
+
+            <div class="page-headline">
+                <h:outputLabel value="#{msg['clubs.headline']}"/>
+                <h:form>
+                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['clubs.navigation.registration']}" 
+                                   actionListener="#{mbKlub.resetujTrenutniKlub()}" />
+                </h:form>
+            </div>
+
+            <div class="row container">
+                <c:forEach var="klub"  items="#{mbKlub.klubovi}">
+                    <div class="col-xs-12 col-md-3 club-grid">
+                        <h:form>
+                            <h:commandLink class="nav-link" action="#{mbStranice.detaljiKluba()}" actionListener="#{mbKlub.setTrenutniKlub(klub)}">
+                                <img class="club-image" src="#{klub.slika}"/>
+                                <p>#{klub.naziv}</p>
+                            </h:commandLink>
+                        </h:form>
+                    </div>
+                </c:forEach>  
+            </div>            
+
+            <ui:include src="footer.xhtml"/>
+        </div>
+    </h:body>
+</html>
