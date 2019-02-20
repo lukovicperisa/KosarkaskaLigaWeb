@@ -192,3 +192,17 @@ table{
 .status-neuspeh{
     margin-bottom: 15px;
 }
+
+#slikaFajl{
+    display: none;
+}
+
+.slika_prikaz{
+    max-height: 40px;
+    max-width: 40px;
+    display: none;
+}
+
+.slika{
+    margin-left: 15px;
+}

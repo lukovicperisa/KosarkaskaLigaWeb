@@ -37,12 +37,14 @@
                     </div> 
                 </div>          
             </div>      
-            <div class="row">
-                <div class="col-xs-12 klub-trofeji">
-                    <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.trofeji']}"/>
-                    <h:outputLabel class="klub-labela" value="#{mbKlub.pobednickeSezone}"/>
+            <c:if test="#{not empty mbKlub.pobednickeSezone}">
+                <div class="row">
+                    <div class="col-xs-12 klub-trofeji">
+                        <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.trofeji']}"/>
+                        <h:outputLabel class="klub-labela" value="#{mbKlub.pobednickeSezone}"/>
+                    </div>
                 </div>
-            </div>
+            </c:if>
 
             <ui:include src="footer.xhtml"/>
         </div>

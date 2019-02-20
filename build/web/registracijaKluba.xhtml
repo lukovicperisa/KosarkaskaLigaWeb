@@ -50,10 +50,14 @@
                     </div>
                     <div class="registracija-sekcija">
                         <label for="slika">#{msg['klub.registracija.slika']}</label>
-                        <h:inputFile id="slika" value="#{slika}">
-                            <f:validator validatorId="slikaValidator"/>
-                        </h:inputFile>
-                        <h:message class="poruka-validatora" for="slika"/>
+                        <div class="row">
+                            <input type="button" id="slika" class="btn btn-default slika" value="#{msg['klub.registracija.slika.aploud']}"></input>
+                            <h:inputFile id="slikaFajl" class="slikaFajl hidden" value="#{slika}" >
+                                <f:validator validatorId="slikaValidator"/>
+                            </h:inputFile>
+                            <img class="slika_prikaz" src="#" onerror="sakrijPrikaz()" />
+                            <h:message class="poruka-validatora" for="slikaFajl"/>
+                        </div>
                     </div>
                     <div class="registracija-sekcija">
                         <label for="drzava">#{msg['klub.registracija.drzava']}</label>
