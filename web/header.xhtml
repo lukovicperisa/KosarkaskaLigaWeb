@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>
         <header>
-            <nav>
-                <ul>
+            <nav class="row">
+                <ul class="col-md-7">
                     <li><a class="nav-link" href="#{mbStranice.index()}">#{msg['sajt.navigacija.index']}</a></li>
                     <li><a class="nav-link" href="#{mbStranice.klubovi()}">#{msg['sajt.navigacija.klubovi']}</a></li>
                     <li><a class="nav-link" href="#{mbStranice.liga()}">#{msg['sajt.navigacija.liga']}</a></li>
+                </ul>
+                <ul class="col-md-5">
+                    <li class="prijavljivanje-link">
+                        <c:if test="#{not empty mbKorisnik.trenutniKorisnik.korisnickoIme}">
+                            <span>#{mbKorisnik.trenutniKorisnik.ime} #{mbKorisnik.trenutniKorisnik.prezime}</span>
+                            <h:form class="odjava-korisnika">
+                                <h:commandLink class="nav-link" action="#{mbStranice.index()}" value="#{msg['sajt.navigacija.odjava']}" 
+                                               actionListener="#{mbKorisnik.odjaviKorisnika()}" >
+                                </h:commandLink>
+                            </h:form>
+
+                        </c:if>
+                        <c:if test="#{empty mbKorisnik.trenutniKorisnik.korisnickoIme}">
+                            <a class="nav-link" href="#{mbStranice.prijavljivanjeKorisnika()}">#{msg['sajt.navigacija.prijava']}</a>
+                        </c:if>
+                    </li>
                 </ul>
             </nav>
         </header>

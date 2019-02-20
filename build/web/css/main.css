@@ -72,7 +72,7 @@ footer {
     margin: 0 auto;
 }
 
-input[type=text], select, textarea {
+input[type=text], input[type=password], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -173,4 +173,22 @@ table{
 
 .potvrda-utakmice{
     padding-top: 30px;
+}
+
+.prijavljivanje-link{
+    float: right;
+}
+
+.odjava-korisnika{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.rezultat-labela{
+    color: white;
+    font-size: 16px;
+}
+
+.status-neuspeh{
+    margin-bottom: 15px;
 }

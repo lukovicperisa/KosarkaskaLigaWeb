@@ -9,11 +9,10 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,25 +22,30 @@ import javax.validation.constraints.NotNull;
 @Table(name = "korisnik")
 public class Korisnik implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "KorisnikID")
-    private int korisnikID;
+    private Integer korisnikID;
 
+    @Size(max = 45)
     @Column(name = "Ime")
     private String ime;
 
+    @Size(max = 45)
     @Column(name = "Prezime")
     private String prezime;
 
     @Column(name = "AdminRola")
     private boolean adminRola;
 
+    @Size(max = 45)
     @Column(name = "KorisnickoIme")
     private String korisnickoIme;
 
+    @Size(max = 45)
     @Column(name = "Lozinka")
     private String lozinka;
 
@@ -95,17 +99,11 @@ public class Korisnik implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null) {
+        if (!(object instanceof Korisnik)) {
             return false;
         }
-        if (getClass() != object.getClass()) {
-            return false;
-        }
-        final Korisnik other = (Korisnik) object;
-        if (this.korisnikID != other.korisnikID) {
+        Korisnik other = (Korisnik) object;
+        if ((this.korisnikID == null && other.korisnikID != null) || (this.korisnikID != null && !this.korisnikID.equals(other.korisnikID))) {
             return false;
         }
         return true;

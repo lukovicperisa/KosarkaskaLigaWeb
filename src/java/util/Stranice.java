@@ -17,5 +17,6 @@ public interface Stranice {
     static final String DETALJI_KLUBA = "detaljiKluba.xhtml";
     static final String LIGA = "liga.xhtml";
     static final String REGISTRACIJA_SEZONE = "registracijaSezone.xhtml";
+    static final String PRIJAVLJIVANJE_KORISNIKA = "prijavljivanjeKorisnika.xhtml";
     
 }

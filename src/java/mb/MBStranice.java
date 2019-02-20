@@ -43,4 +43,8 @@ public class MBStranice implements Serializable{
         return Stranice.REGISTRACIJA_SEZONE;
     }
     
+    public String prijavljivanjeKorisnika(){
+        return Stranice.PRIJAVLJIVANJE_KORISNIKA;
+    }
+    
 }

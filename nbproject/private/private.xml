@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LUP1BG/Documents/Dipl/Diplomski/KosarkaskaLigaWeb/src/java/services/GameService.java</file>
-            <file>file:/C:/Users/LUP1BG/Documents/Dipl/Diplomski/KosarkaskaLigaWeb/src/java/services/RoundService.java</file>
-            <file>file:/C:/Users/LUP1BG/Documents/Dipl/Diplomski/KosarkaskaLigaWeb/src/java/services/SeasonService.java</file>
-            <file>file:/C:/Users/LUP1BG/Documents/Dipl/Diplomski/KosarkaskaLigaWeb/src/java/model/Club.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/mb/MBKorisnik.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/mb/MBStranice.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/UtakmicaValidator.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/web/header.xhtml</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/DatumValidator.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/servisi/SezonaServis.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/SlikaValidator.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/servisi/KorisnikServis.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/UcesniciValidator.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/web/prijavljivanjeKorisnika.xhtml</file>
         </group>
     </open-files>
 </project-private>

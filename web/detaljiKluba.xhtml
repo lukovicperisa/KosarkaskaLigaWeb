@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <ui:include src="importi.xhtml"/>
     </h:head>
@@ -11,9 +12,11 @@
 
             <div class="naslov-stranice">
                 <h:outputLabel value="#{mbKlub.trenutniKlub.naziv}"/>
-                <h:form>
-                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['klub.detalji.navigacija.izmena']}" />
-                </h:form>
+                <c:if test="#{not empty mbKorisnik.trenutniKorisnik.korisnickoIme}">
+                    <h:form>
+                        <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['klub.detalji.navigacija.izmena']}" />
+                    </h:form>
+                </c:if>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-md-6 klub-detalji">
@@ -40,7 +43,7 @@
                     <h:outputLabel class="klub-labela" value="#{mbKlub.pobednickeSezone}"/>
                 </div>
             </div>
-            
+
             <ui:include src="footer.xhtml"/>
         </div>
     </h:body>

@@ -12,10 +12,12 @@
 
             <div class="naslov-stranice">
                 <h:outputLabel value="#{msg['klubovi.naslov']}"/>
-                <h:form>
-                    <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['klubovi.navigacija.registracija']}" 
-                                   actionListener="#{mbKlub.resetujTrenutniKlub()}" />
-                </h:form>
+                <c:if test="#{not empty mbKorisnik.trenutniKorisnik.korisnickoIme}">
+                    <h:form>
+                        <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['klubovi.navigacija.registracija']}" 
+                                       actionListener="#{mbKlub.resetujTrenutniKlub()}" />
+                    </h:form>
+                </c:if>
             </div>
 
             <div class="row container">
