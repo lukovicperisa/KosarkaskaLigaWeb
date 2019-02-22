@@ -10,6 +10,10 @@
             <base-name>rb.prevodi</base-name>
             <var>msg</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>rb.konfiguracija</base-name>
+        </resource-bundle>
+
         <message-bundle>
             rb.validacija
         </message-bundle>

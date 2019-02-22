@@ -11,7 +11,7 @@
             <ui:include src="header.xhtml"/>
 
             <div class="naslov-stranice">
-                <h:outputLabel value="#{msg['klubovi.naslov']}"/>
+                <h:outputText value="#{msg['klubovi.naslov']}"/>
                 <c:if test="#{not empty mbKorisnik.trenutniKorisnik.korisnickoIme}">
                     <h:form>
                         <h:commandLink class="nav-link" action="#{mbStranice.registracijaKluba()}" value="#{msg['klubovi.navigacija.registracija']}" 

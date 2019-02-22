@@ -107,11 +107,16 @@
                                             <div class="col-xs-12 col-md-3">
                                                 <label>#{utakmica.domacin.naziv}</label>
                                             </div>
-                                            <div class="col-xs-12 col-md-2">
-                                                <label class="rezultat-labela">#{utakmica.poenaDomaci}</label>
-                                                <label class="rezultat-labela">#{msg['liga.utakmica.labela']}</label>
-                                                <label class="rezultat-labela">#{utakmica.poenaGosti}</label>
-                                            </div>
+                                            <h:form>
+                                                <div class="col-xs-12 col-md-2">
+                                                    <h:commandLink class="rezultat-labela" action="statistika.xhtml" actionListener="#{mbUtakmica.setTrenutnaUtakmica(utakmica)}">
+                                                        #{utakmica.poenaDomaci}
+                                                        #{msg['liga.utakmica.labela']}
+                                                        #{utakmica.poenaGosti}
+                                                    </h:commandLink>
+
+                                                </div>
+                                            </h:form>
 
                                             <div class="col-xs-12 col-md-3">
                                                 <label>#{utakmica.gost.naziv}</label>

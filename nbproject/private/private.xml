@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/mb/MBKorisnik.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/mb/MBStranice.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/UtakmicaValidator.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/web/header.xhtml</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/DatumValidator.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/servisi/SezonaServis.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/SlikaValidator.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/servisi/KorisnikServis.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/validatori/UcesniciValidator.java</file>
-            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/web/prijavljivanjeKorisnika.xhtml</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/web/css/main.css</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/dto/Igrac.java</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/src/java/rb/prevodi.properties</file>
+            <file>file:/C:/Diplomski/KosarkaskaLigaWeb/web/detaljiKluba.xhtml</file>
         </group>
     </open-files>
 </project-private>

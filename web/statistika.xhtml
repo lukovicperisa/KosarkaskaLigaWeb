@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <ui:include src="importi.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <ui:include src="header.xhtml"/>
+
+            <div class="naslov-stranice">
+                <span>#{mbUtakmica.trenutnaUtakmica.domacin.naziv} - #{mbUtakmica.trenutnaUtakmica.gost.naziv}</span> 
+            </div>
+            <c:if test="#{mbStatistika.statistika!=null}">
+                <h3>#{mbUtakmica.trenutnaUtakmica.domacin.naziv}</h3>
+                <table class="table table-striped">
+                    <ui:include src="statistikaHeder.xhtml"/>
+                    <tbody>
+                        <c:forEach items="#{mbStatistika.statistika.domaci.igraci}" var="igrac" varStatus="i">
+                            <tr>
+                                <th scope="row">#{igrac.broj}</th>
+                                <td>#{igrac.ime}</td>
+                                <td>#{igrac.minutaza}</td>
+                                <td>#{igrac.poeni}</td>
+                                <td>#{igrac.procenatSuta}</td>
+                                <td>#{igrac.pogodak2}</td>
+                                <td>#{igrac.pokusaj2}</td>
+                                <td>#{igrac.procenat2}</td>
+                                <td>#{igrac.pogodak3}</td>
+                                <td>#{igrac.pokusaj3}</td>
+                                <td>#{igrac.procenat3}</td>
+                                <td>#{igrac.pogodak1}</td>
+                                <td>#{igrac.pokusaj1}</td>
+                                <td>#{igrac.procenat1}</td>
+                                <td>#{igrac.skokOdbrana}</td>
+                                <td>#{igrac.skokNapad}</td>
+                                <td>#{igrac.asistencije}</td>
+                                <td>#{igrac.ukradene}</td>
+                                <td>#{igrac.izgubljene}</td>
+                                <td>#{igrac.blokadeUdarene}</td>
+                                <td>#{igrac.blokadePrimljene}</td>
+                                <td>#{igrac.faulovi}</td>
+                                <td>#{igrac.fauloviNad}</td>
+                                <td>#{igrac.indeks}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+
+                <ui:param name="domaci" value="#{mbStatistika.statistika.domaci.tim}"/>
+                <ui:param name="gosti" value="#{mbStatistika.statistika.gosti.tim}"/>
+
+                <h3>#{msg['statistika.poredjenje.timova']}</h3>
+                <table class="table table-striped">
+                    <ui:include src="statistikaHeder.xhtml"/>
+                    <tbody>
+                        <tr>
+                            <th scope="row" colspan="2">#{mbUtakmica.trenutnaUtakmica.domacin.naziv}</th>
+                            <td>#{domaci.minutaza}</td>
+                            <td>#{domaci.poeni}</td>
+                            <td>#{domaci.procenatSuta}</td>
+                            <td>#{domaci.pogodak2}</td>
+                            <td>#{domaci.pokusaj2}</td>
+                            <td>#{domaci.procenat2}</td>
+                            <td>#{domaci.pogodak3}</td>
+                            <td>#{domaci.pokusaj3}</td>
+                            <td>#{domaci.procenat3}</td>
+                            <td>#{domaci.pogodak1}</td>
+                            <td>#{domaci.pokusaj1}</td>
+                            <td>#{domaci.procenat1}</td>
+                            <td>#{domaci.skokOdbrana}</td>
+                            <td>#{domaci.skokNapad}</td>
+                            <td>#{domaci.asistencije}</td>
+                            <td>#{domaci.ukradene}</td>
+                            <td>#{domaci.izgubljene}</td>
+                            <td>#{domaci.blokadeUdarene}</td>
+                            <td>#{domaci.blokadePrimljene}</td>
+                            <td>#{domaci.faulovi}</td>
+                            <td>#{domaci.fauloviNad}</td>
+                            <td>#{domaci.indeks}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="2">#{mbUtakmica.trenutnaUtakmica.gost.naziv}</th>
+                            <td>#{gosti.minutaza}</td>
+                            <td>#{gosti.poeni}</td>
+                            <td>#{gosti.procenatSuta}</td>
+                            <td>#{gosti.pogodak2}</td>
+                            <td>#{gosti.pokusaj2}</td>
+                            <td>#{gosti.procenat2}</td>
+                            <td>#{gosti.pogodak3}</td>
+                            <td>#{gosti.pokusaj3}</td>
+                            <td>#{gosti.procenat3}</td>
+                            <td>#{gosti.pogodak1}</td>
+                            <td>#{gosti.pokusaj1}</td>
+                            <td>#{gosti.procenat1}</td>
+                            <td>#{gosti.skokOdbrana}</td>
+                            <td>#{gosti.skokNapad}</td>
+                            <td>#{gosti.asistencije}</td>
+                            <td>#{gosti.ukradene}</td>
+                            <td>#{gosti.izgubljene}</td>
+                            <td>#{gosti.blokadeUdarene}</td>
+                            <td>#{gosti.blokadePrimljene}</td>
+                            <td>#{gosti.faulovi}</td>
+                            <td>#{gosti.fauloviNad}</td>
+                            <td>#{gosti.indeks}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="table table-striped">
+                    <ui:include src="statistikaHeder.xhtml"/>
+                    <h3>#{mbUtakmica.trenutnaUtakmica.gost.naziv}</h3>
+                    <tbody>
+                        <c:forEach items="#{mbStatistika.statistika.gosti.igraci}" var="igrac" varStatus="i">
+                            <tr>
+                                <th scope="row">#{igrac.broj}</th>
+                                <td>#{igrac.ime}</td>
+                                <td>#{igrac.minutaza}</td>
+                                <td>#{igrac.poeni}</td>
+                                <td>#{igrac.procenatSuta}</td>
+                                <td>#{igrac.pogodak2}</td>
+                                <td>#{igrac.pokusaj2}</td>
+                                <td>#{igrac.procenat2}</td>
+                                <td>#{igrac.pogodak3}</td>
+                                <td>#{igrac.pokusaj3}</td>
+                                <td>#{igrac.procenat3}</td>
+                                <td>#{igrac.pogodak1}</td>
+                                <td>#{igrac.pokusaj1}</td>
+                                <td>#{igrac.procenat1}</td>
+                                <td>#{igrac.skokOdbrana}</td>
+                                <td>#{igrac.skokNapad}</td>
+                                <td>#{igrac.asistencije}</td>
+                                <td>#{igrac.ukradene}</td>
+                                <td>#{igrac.izgubljene}</td>
+                                <td>#{igrac.blokadeUdarene}</td>
+                                <td>#{igrac.blokadePrimljene}</td>
+                                <td>#{igrac.faulovi}</td>
+                                <td>#{igrac.fauloviNad}</td>
+                                <td>#{igrac.indeks}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+
+            </c:if>
+            <ui:include src="footer.xhtml"/>
+        </div>        
+    </h:body>
+</html>
