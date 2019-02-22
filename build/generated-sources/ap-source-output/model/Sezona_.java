@@ -9,7 +9,7 @@ import model.Klub;
 import model.Kolo;
 import model.Ucesnik;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-02-22T14:39:09")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-02-22T15:36:30")
 @StaticMetamodel(Sezona.class)
 public class Sezona_ { 
 

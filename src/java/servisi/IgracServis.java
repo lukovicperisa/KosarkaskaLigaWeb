@@ -19,6 +19,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import model.Klub;
 
 /**
  *
@@ -33,9 +34,9 @@ public class IgracServis {
 
     private final ResourceBundle bundle = ResourceBundle.getBundle("rb.konfiguracija");
 
-    public List<Igrac> vratiIgraceZaKlub() {
+    public List<Igrac> vratiIgraceZaKlub(Klub klub) {
         Client klijent = ClientBuilder.newClient();
-        wt = klijent.target(bundle.getString("rest.servis.igraci.url"));
+        wt = klijent.target(bundle.getString("rest.servis.igraci.url")).queryParam("klubID", klub.getKlubID());
 
         JsonObject obj = wt.request().accept(MediaType.APPLICATION_JSON).get(JsonObject.class);
 

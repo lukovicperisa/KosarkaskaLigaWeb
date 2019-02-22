@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </c:if>
-            <c:if test="#{not empty mbIgrac.igraci}">
+            <c:if test="#{not empty mbIgrac.vratiIgraceZaKlub(mbKlub.trenutniKlub)}">
                 <div class="row">
                     <div class="col-xs-12 klub-igraci">
                         <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.igraci']}"/>

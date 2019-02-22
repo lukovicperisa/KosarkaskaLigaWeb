@@ -13,7 +13,7 @@
             <div class="naslov-stranice">
                 <span>#{mbUtakmica.trenutnaUtakmica.domacin.naziv} - #{mbUtakmica.trenutnaUtakmica.gost.naziv}</span> 
             </div>
-            <c:if test="#{mbStatistika.statistika!=null}">
+            <c:if test="#{mbStatistika.vratiStatistikuZaUtakmicu(mbUtakmica.trenutnaUtakmica)!=null}">
                 <h3>#{mbUtakmica.trenutnaUtakmica.domacin.naziv}</h3>
                 <table class="table table-striped">
                     <ui:include src="statistikaHeder.xhtml"/>

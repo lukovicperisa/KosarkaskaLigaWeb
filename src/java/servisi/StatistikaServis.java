@@ -17,6 +17,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import model.Utakmica;
 
 /**
  *
@@ -31,10 +32,10 @@ public class StatistikaServis {
 
     private final ResourceBundle bundle = ResourceBundle.getBundle("rb.konfiguracija");
 
-    public Statistika vratiStatistikuUtakmice() {
+    public Statistika vratiStatistikuUtakmice(Utakmica utakmica) {
 
         Client klijent = ClientBuilder.newClient();
-        wt = klijent.target(bundle.getString("rest.servis.statistika.url"));
+        wt = klijent.target(bundle.getString("rest.servis.statistika.url")).queryParam("utakmicaID", utakmica.getUtakmicaID());
 
         JsonObject obj = wt.request().accept(MediaType.APPLICATION_JSON).get(JsonObject.class);
         maper = new ObjectMapper();

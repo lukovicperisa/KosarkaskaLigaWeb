@@ -109,11 +109,20 @@
                                             </div>
                                             <h:form>
                                                 <div class="col-xs-12 col-md-2">
-                                                    <h:commandLink class="rezultat-labela" action="statistika.xhtml" actionListener="#{mbUtakmica.setTrenutnaUtakmica(utakmica)}">
-                                                        #{utakmica.poenaDomaci}
-                                                        #{msg['liga.utakmica.labela']}
-                                                        #{utakmica.poenaGosti}
-                                                    </h:commandLink>
+                                                    <c:if test="#{mbStatistika.vratiStatistikuZaUtakmicu(utakmica)!=null}">
+                                                        <h:commandLink class="rezultat-labela" action="statistika.xhtml" actionListener="#{mbUtakmica.setTrenutnaUtakmica(utakmica)}">
+                                                            #{utakmica.poenaDomaci}
+                                                            #{msg['liga.utakmica.labela']}
+                                                            #{utakmica.poenaGosti}
+                                                        </h:commandLink>
+                                                    </c:if>
+                                                    <c:if test="#{mbStatistika.vratiStatistikuZaUtakmicu(utakmica)==null}">
+                                                        <p class="rezultat-labela">
+                                                            #{utakmica.poenaDomaci}
+                                                            #{msg['liga.utakmica.labela']}
+                                                            #{utakmica.poenaGosti}
+                                                        </p>
+                                                    </c:if>
 
                                                 </div>
                                             </h:form>
