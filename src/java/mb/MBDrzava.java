@@ -28,10 +28,17 @@ public class MBDrzava implements Serializable{
     private List<Drzava> drzave;
 
     public List<Drzava> getDrzave() {
-        return drzavaServis.vratiSveDrzave();
+        if(drzave == null){
+            drzave = vratiSveDrzave();
+        }
+        return drzave;
     }
 
     public void setDrzave(List<Drzava> drzave) {
         this.drzave = drzave;
+    }
+    
+    private List<Drzava> vratiSveDrzave() {
+        return drzavaServis.vratiSveDrzave();
     }
 }

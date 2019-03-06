@@ -51,33 +51,33 @@
                         <h:outputLabel class="klub-labela" value="#{msg['klub.detalji.igraci']}"/>
                     </div>
                 </div>
-            </c:if>
-            <div class="tabela-igraci">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#{msg['igrac.tabela.zaglavlje.1']}</th>
-                            <th scope="col">#{msg['igrac.tabela.zaglavlje.2']}</th>
-                            <th scope="col">#{msg['igrac.tabela.zaglavlje.3']}</th>
-                            <th scope="col">#{msg['igrac.tabela.zaglavlje.4']}</th>
-                            <th scope="col">#{msg['igrac.tabela.zaglavlje.5']}</th>
-                            <th scope="col">#{msg['igrac.tabela.zaglavlje.6']}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="#{mbIgrac.igraci}" var="igrac">
+                <div class="tabela-igraci">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <th scope="row">##{igrac.broj}</th>
-                                <td>#{igrac.ime}</td>
-                                <td>#{igrac.prezime}</td>
-                                <td>#{igrac.pozicija}</td>
-                                <td>#{igrac.datumRodjenja}</td>
-                                <td>#{igrac.drzava}</td>
+                                <th scope="col">#{msg['igrac.tabela.zaglavlje.1']}</th>
+                                <th scope="col">#{msg['igrac.tabela.zaglavlje.2']}</th>
+                                <th scope="col">#{msg['igrac.tabela.zaglavlje.3']}</th>
+                                <th scope="col">#{msg['igrac.tabela.zaglavlje.4']}</th>
+                                <th scope="col">#{msg['igrac.tabela.zaglavlje.5']}</th>
+                                <th scope="col">#{msg['igrac.tabela.zaglavlje.6']}</th>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="#{mbIgrac.igraci}" var="igrac">
+                                <tr>
+                                    <th scope="row">##{igrac.broj}</th>
+                                    <td>#{igrac.ime}</td>
+                                    <td>#{igrac.prezime}</td>
+                                    <td>#{igrac.pozicija}</td>
+                                    <td>#{igrac.datumRodjenja}</td>
+                                    <td>#{igrac.drzava}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
             <ui:include src="footer.xhtml"/>
         </div>
     </h:body>

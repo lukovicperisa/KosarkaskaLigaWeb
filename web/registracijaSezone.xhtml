@@ -19,7 +19,12 @@
                     <h:inputHidden id="statusRegistracije"/>
                     <h:message for="statusRegistracije"/>
                 </div>
-                <h:form>
+                <div class="status-neuspeh">
+                    <h:inputHidden id="statusNeuspeh"/>
+                    <h:message for="statusNeuspeh"/>
+                </div>
+
+                <h:form enctype="multipart/form-data">
                     <div class="registracija-sekcija">
                         <label for="nazivLige">#{msg['liga.registracija.naziv']}</label>
                         <h:inputText id="nazivLige" value="#{mbSezona.trenutnaSezona.nazivLige}" validatorMessage="#{msg['validacija.liga.naziv.poruka']}"
@@ -41,9 +46,21 @@
                             <f:convertDateTime pattern="yyyy-MM-dd"/>
                         </h:inputText>
                         <h:message class="poruka-validatora" for="datumZavrsetka"/>
-                    </div>  
-                   <div class="registracija-sekcija">
-                       <label for="sistem">#{msg['liga.registracija.kolo.sistem']}</label>
+                    </div>
+                    <div class="registracija-sekcija">
+                        <label for="slika">#{msg['liga.registracija.slika']}</label>
+                        <div class="row">
+                            <input type="button" id="slika" class="btn btn-default slika" value="#{msg['liga.registracija.slika.aploud']}"></input>
+                            <h:inputFile id="slikaFajl" class="slikaFajl hidden" value="#{slika}" >
+                                <f:validator validatorId="slikaValidator"/>
+                            </h:inputFile>
+                            <img class="slika_prikaz" src="#" onerror="sakrijPrikaz()" />
+                            <h:message class="poruka-validatora" for="slikaFajl"/>
+                        </div>
+                    </div>
+
+                    <div class="registracija-sekcija">
+                        <label for="sistem">#{msg['liga.registracija.kolo.sistem']}</label>
                         <h:selectOneMenu id="sistem" value ="#{mbSezona.trenutnaSezona.sistem}">
                             <f:selectItem itemLabel="#{msg['liga.registracija.kolo.sistem.opcija.jednokruzni']}" itemValue="#{msg['liga.registracija.kolo.sistem.opcija.jednokruzni.vrednost']}" />
                             <f:selectItem itemLabel="#{msg['liga.registracija.kolo.sistem.opcija.dvokruzni']}" itemValue="#{msg['liga.registracija.kolo.sistem.opcija.dvokruzni.vrednost']}" />
@@ -58,7 +75,7 @@
                         <h:message class="poruka-validatora" for="ucesnici"/>
                     </div>
                     <f:event listener="#{mbSezona.validirajDatume}" type="postValidate"/>
-                    <h:commandButton action="#{mbSezona.sacuvaj()}" value="#{msg['liga.registracija.sacuvaj']}"/>
+                    <h:commandButton action="#{mbSezona.sacuvaj(slika)}" value="#{msg['liga.registracija.sacuvaj']}"/>
                 </h:form>
             </div>
 

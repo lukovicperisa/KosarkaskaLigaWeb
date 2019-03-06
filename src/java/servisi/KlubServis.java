@@ -6,7 +6,6 @@
 package servisi;
 
 import dao.KlubDAO;
-import dao.SezonaDAO;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,13 +17,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.http.Part;
+import javax.transaction.Transactional;
 import model.Klub;
+import model.Sezona;
+import model.Utakmica;
+import util.PorukaUtil;
 
 /**
  *
@@ -33,32 +33,67 @@ import model.Klub;
 @ApplicationScoped
 public class KlubServis {
 
-    @EJB
+    private final static Logger LOG = Logger.getLogger(KlubServis.class.getName());
+
+    @Inject
     private KlubDAO klubDAO;
-    
-    @EJB
-    private SezonaDAO sezonaDAO;
-    
+
+    @Inject
+    private SezonaServis sezonaServis;
+
     private final ResourceBundle bundle = ResourceBundle.getBundle("rb.prevodi");
 
+    @Transactional
     public List<Klub> vratiSveKlubove() {
-        return klubDAO.vratiSveKlubove();
+        try {
+            return klubDAO.vratiSveKlubove();
+        } catch (Exception ex) {
+            LOG.warning("Sistem nije mogao da pronadje klubove");
+            return null;
+        }
     }
 
+    @Transactional
     public Klub vratiKlubZaID(int id) {
-        return klubDAO.vratiKlubZaID(id);
+        try {
+            return klubDAO.vratiKlubZaID(id);
+        } catch (Exception ex) {
+            LOG.warning("Sistem nije mogao da pronadje klub za zadati kriterijum");
+            return null;
+        }
+    }
+
+    @Transactional
+    private void sacuvajKlub(Klub klub) {
+        try {
+            klubDAO.sacuvaj(klub);
+            PorukaUtil.dodajPoruku("statusUspeh", "klub.registracija.status.poruka");
+        } catch (Exception ex) {
+            LOG.warning("Klub nije sacuvan");
+            PorukaUtil.dodajPoruku("statusNeuspeh", "klub.registracija.neuspeh.poruka");
+        }
+    }
+
+    @Transactional
+    private void izmeniKlub(Klub klub) {
+        try {
+            klubDAO.azuriraj(klub);
+            PorukaUtil.dodajPoruku("statusUspeh", "klub.registracija.status.poruka");
+        } catch (Exception ex) {
+            LOG.warning("Klub nije sacuvan");
+            PorukaUtil.dodajPoruku("statusNeuspeh", "klub.registracija.neuspeh.poruka");
+        }
     }
 
     public void sacuvaj(Klub klub) {
         if (vratiSveKlubove().contains(klub)) {
-            klubDAO.azuriraj(klub);
+            izmeniKlub(klub);
         } else {
             klub.setKlubID(generisiID());
-            klubDAO.sacuvaj(klub);
+            sacuvajKlub(klub);
         }
-        dodajPoruku("statusRegistracije","klub.registracija.status.poruka");
     }
-    
+
     private Integer generisiID() {
         List<Klub> klubovi = vratiSveKlubove();
         if (klubovi.isEmpty()) {
@@ -79,18 +114,35 @@ public class KlubServis {
     }
 
     public String vratiPobednickeSezone(Klub klub) {
-        return sezonaDAO.vratiSveSezone().stream()
+        return sezonaServis.vratiSveSezone().stream()
                 .filter(s -> s.getSampion()!=null)
                 .filter(s -> Objects.equals(s.getSampion().getKlubID(), klub.getKlubID()))
                 .map(s -> s.getNazivLige())
                 .collect(Collectors.joining(", "));
     }
 
-    private void dodajPoruku(String komponentaID, String poruka) {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        UIInput klijentID = (UIInput) ctx.getViewRoot().findComponent(komponentaID);
-        String ispis = klijentID.getClientId();
-        ctx.addMessage(ispis, new FacesMessage(bundle.getString(poruka)));
+    public String vratiKosRazlikuKluba(Klub klub, Sezona sezona) {
+
+        int poenaDato = vratiPoeneDomacegTima(klub.getListaUtakmicaDomacin(), sezona) + vratiPoeneGostujucegTima(klub.getListaUtakmicaGost(), sezona);
+
+        int poenaPrimljeno = vratiPoeneGostujucegTima(klub.getListaUtakmicaDomacin(), sezona) + vratiPoeneDomacegTima(klub.getListaUtakmicaGost(), sezona);
+
+        return String.format("%d:%d", poenaDato, poenaPrimljeno);
+
+    }
+    
+    private int vratiPoeneDomacegTima(List<Utakmica> utakmice, Sezona sezona) {
+        return utakmice.stream()
+                .filter(utakmica -> utakmica.getKolo().getSezona().getSezonaID().intValue() == sezona.getSezonaID())
+                .mapToInt(utakmica -> utakmica.getPoenaDomaci())
+                .sum();
+    }
+    
+    private int vratiPoeneGostujucegTima(List<Utakmica> utakmice, Sezona sezona) {
+        return utakmice.stream()
+                .filter(utakmica -> utakmica.getKolo().getSezona().getSezonaID().intValue() == sezona.getSezonaID())
+                .mapToInt(utakmica -> utakmica.getPoenaGosti())
+                .sum();
     }
 
 }
