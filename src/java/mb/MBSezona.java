@@ -11,6 +11,7 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 import model.Klub;
 import model.Ucesnik;
 import model.Sezona;
@@ -23,19 +24,19 @@ import servisi.SezonaServis;
 @Named(value = "mbSezona")
 @ViewScoped
 public class MBSezona implements Serializable {
-    
+
     @Inject
     private SezonaServis sezonaServis;
-    
+
     private List<Sezona> sezone;
     private Sezona trenutnaSezona;
     private List<Ucesnik> rangLista;
     private List<Klub> klubovi;
-    
+
     public MBSezona() {
         trenutnaSezona = new Sezona();
     }
-    
+
     public List<Klub> getKlubovi() {
         return klubovi;
     }
@@ -43,7 +44,7 @@ public class MBSezona implements Serializable {
     public void setKlubovi(List<Klub> klubovi) {
         this.klubovi = klubovi;
     }
-    
+
     public List<Ucesnik> getRangLista() {
         return sezonaServis.vratiRangiranje(trenutnaSezona);
     }
@@ -68,17 +69,20 @@ public class MBSezona implements Serializable {
         this.trenutnaSezona = trenutnaSezona;
     }
 
-    public void sacuvaj() {
-        sezonaServis.sacuvaj(trenutnaSezona,klubovi);
+    public void sacuvaj(Part slika) throws Exception {
+        if (slika != null) {
+            sezonaServis.sacuvajSliku(trenutnaSezona, slika);
+        }
+        sezonaServis.sacuvaj(trenutnaSezona, klubovi);
         resetujTrenutnuSezonu();
     }
 
     public void resetujTrenutnuSezonu() {
         trenutnaSezona = new Sezona();
     }
-    
-    public void validirajDatume(ComponentSystemEvent event){
+
+    public void validirajDatume(ComponentSystemEvent event) {
         sezonaServis.validirajDatume(event);
     }
-    
+
 }

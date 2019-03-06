@@ -9,19 +9,21 @@
                     <thead>
                         <tr>
                             <th scope="col">#{msg['liga.tabela.zaglavlje.1']}</th>
-                            <th scope="col">#{msg['liga.tabela.zaglavlje.2']}</th>
+                            <th scope="col" class="naziv-kluba">#{msg['liga.tabela.zaglavlje.2']}</th>
                             <th scope="col">#{msg['liga.tabela.zaglavlje.3']}</th>
                             <th scope="col">#{msg['liga.tabela.zaglavlje.4']}</th>
                             <th scope="col">#{msg['liga.tabela.zaglavlje.5']}</th>
+                            <th scope="col">#{msg['liga.tabela.zaglavlje.6']}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="#{mbSezona.rangLista}" var="klub" varStatus="i">
                             <tr>
                                 <th scope="row">#{i.index+1}</th>
-                                <td>#{klub.klub.naziv}</td>
+                                <td class="naziv-kluba">#{klub.klub.naziv}</td>
                                 <td>#{klub.brojOdigranihUtakmica}</td>
                                 <td>#{klub.brojPobeda}</td>
+                                <td>#{mbKlub.vratiKosRazlikuKluba(klub.klub, mbSezona.trenutnaSezona)}</td>
                                 <td>#{klub.brojOdigranihUtakmica+klub.brojPobeda}</td>
                             </tr>
                         </c:forEach>

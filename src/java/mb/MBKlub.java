@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import model.Klub;
+import model.Sezona;
 import servisi.KlubServis;
 
 /**
@@ -34,7 +35,10 @@ public class MBKlub implements Serializable {
     }
 
     public List<Klub> getKlubovi() {
-        return klubServis.vratiSveKlubove();
+        if(klubovi == null) {
+            klubovi = vratiSveKlubove();
+        }
+        return klubovi;
     }
 
     public void setKlubovi(List<Klub> klubovi) {
@@ -67,6 +71,14 @@ public class MBKlub implements Serializable {
 
     public void resetujTrenutniKlub() {
         trenutniKlub = new Klub();
+    }
+    
+    private List<Klub> vratiSveKlubove() {
+        return klubServis.vratiSveKlubove();
+    }
+    
+    public String vratiKosRazlikuKluba(Klub klub, Sezona sezona) {
+        return klubServis.vratiKosRazlikuKluba(klub, sezona);
     }
 
 }

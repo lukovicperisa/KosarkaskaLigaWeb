@@ -24,9 +24,14 @@
             </div>
             <div class="registracija">
                 <div class="status-uspeh">
-                    <h:inputHidden id="statusRegistracije"/>
-                    <h:message for="statusRegistracije"/>
+                    <h:inputHidden id="statusUspeh"/>
+                    <h:message for="statusUspeh"/>
                 </div>
+                <div class="status-neuspeh">
+                    <h:inputHidden id="statusNeuspeh"/>
+                    <h:message for="statusNeuspeh"/>
+                </div>
+
                 <h:form  enctype="multipart/form-data">
                     <div class="registracija-sekcija">
                         <label for="naziv">#{msg['klub.registracija.naziv']}</label>

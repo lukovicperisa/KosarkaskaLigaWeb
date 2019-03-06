@@ -7,13 +7,16 @@ package servisi;
 
 import dao.KorisnikDAO;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import model.Korisnik;
 import org.apache.commons.lang3.StringUtils;
+import util.PorukaUtil;
 
 /**
  *
@@ -21,18 +24,28 @@ import org.apache.commons.lang3.StringUtils;
  */
 @ApplicationScoped
 public class KorisnikServis {
-
-    private final ResourceBundle bundle = ResourceBundle.getBundle("rb.prevodi");
+    
+    private final static Logger LOG = Logger.getLogger(KorisnikServis.class.getName());
 
     @Inject
     private KorisnikDAO korisnikDAO;
+    
+    @Transactional
+    private Korisnik vratiKorisnikaZaID(String id){
+        try {
+        return korisnikDAO.vratiKorisnikaZaID(id);
+        } catch (Exception ex) {
+            LOG.warning("Sistem nije mogao da pronadje korisnika za zadati kriterijum");
+            return null;
+        }
+    }
 
     public Korisnik prijaviKorisnika(String korisnickoIme, String lozinka) {
 
-        Korisnik korisnik = korisnikDAO.vratiKorisnikaZaID(korisnickoIme);
+        Korisnik korisnik = vratiKorisnikaZaID(korisnickoIme);
 
         if (korisnik == null) {
-            postaviPoruku("statusPrijavljivanja", "validacija.korisnik.nepostojeci");
+            PorukaUtil.dodajPoruku("statusPrijavljivanja", "validacija.korisnik.nepostojeci");
             return new Korisnik();
         }
 
@@ -41,17 +54,10 @@ public class KorisnikServis {
 
     private Korisnik proveriLozinkuZaKorisnika(Korisnik korisnik, String lozinka) {
         if (!StringUtils.equals(korisnik.getLozinka(), lozinka)) {
-            postaviPoruku("statusPrijavljivanja", "validacija.korisnik.lozinka");
+            PorukaUtil.dodajPoruku("statusPrijavljivanja", "validacija.korisnik.lozinka");
             return new Korisnik();
         }
         return korisnik;
-    }
-
-    private void postaviPoruku(String komponentaID, String poruka) {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        UIInput klijentID = (UIInput) ctx.getViewRoot().findComponent(komponentaID);
-        String ispis = klijentID.getClientId();
-        ctx.addMessage(ispis, new FacesMessage(bundle.getString(poruka)));
     }
 
 }

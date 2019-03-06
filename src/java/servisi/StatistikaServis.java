@@ -7,9 +7,7 @@ package servisi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dto.Statistika;
-import java.io.IOException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.JsonObject;
@@ -25,6 +23,8 @@ import model.Utakmica;
  */
 @ApplicationScoped
 public class StatistikaServis {
+    
+    private static final Logger LOG = Logger.getLogger(StatistikaServis.class.getName());
 
     private WebTarget wt;
 
@@ -33,22 +33,21 @@ public class StatistikaServis {
     private final ResourceBundle bundle = ResourceBundle.getBundle("rb.konfiguracija");
 
     public Statistika vratiStatistikuUtakmice(Utakmica utakmica) {
+        try{
+            Client klijent = ClientBuilder.newClient();
+            wt = klijent.target(bundle.getString("rest.servis.statistika.url")).queryParam("utakmicaID", utakmica.getUtakmicaID());
 
-        Client klijent = ClientBuilder.newClient();
-        wt = klijent.target(bundle.getString("rest.servis.statistika.url")).queryParam("utakmicaID", utakmica.getUtakmicaID());
+            JsonObject obj = wt.request().accept(MediaType.APPLICATION_JSON).get(JsonObject.class);
+            maper = new ObjectMapper();
 
-        JsonObject obj = wt.request().accept(MediaType.APPLICATION_JSON).get(JsonObject.class);
-        maper = new ObjectMapper();
+            klijent.close();
 
-        klijent.close();
-        Statistika statistika = new Statistika();
-
-        try {
-            statistika = maper.readValue(obj.getJsonObject("statistika").toString(), Statistika.class);
-        } catch (IOException ex) {
-            Logger.getLogger(StatistikaServis.class.getName()).log(Level.SEVERE, null, ex);
+            Statistika statistika = maper.readValue(obj.getJsonObject("statistika").toString(), Statistika.class);
+            return statistika;
+        }catch(Exception ex) {
+            LOG.warning("Doslo je do greske prilikom komunikacije sa REST servisom!");
+            return null;
         }
-        return statistika;
     }
 
 }

@@ -19,6 +19,8 @@
                         </c:when>
                         <c:otherwise>
                             <h:outputText value="#{mbSezona.trenutnaSezona.nazivLige}"/>
+                            <img class="sezona-slika" src="#{mbSezona.trenutnaSezona.slika}"/>
+
                             <c:if test="#{mbSezona.trenutnaSezona.sampion != null}">
                                 <br></br>
                                 <h:outputText value="#{msg['liga.sampion.tekst']}"/>
@@ -38,7 +40,7 @@
                 </h:panelGroup>
             </div>
             <div class="row liga-stranica">
-                <div class="col-xs-12 col-md-8">
+                <div class="col-xs-12 col-md-7">
                     <h:form>
                         <label>#{msg['liga.sezona']}</label>
                         <div class="opcije">
@@ -137,7 +139,7 @@
                         </c:if>
                     </h:panelGroup>
                 </div>
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-md-5">
                     <ui:include src="tabela.xhtml"/>
                 </div>
             </div>

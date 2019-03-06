@@ -52,6 +52,9 @@ public class Sezona implements Serializable {
     @Size(max = 50)
     @Column(name = "NazivLige")
     private String nazivLige;
+    @Size(max = 100)
+    @Column(name = "Slika")
+    private String slika;
     @OneToMany(mappedBy = "sezona")
     private List<Kolo> listaKola;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sezona")
@@ -107,6 +110,14 @@ public class Sezona implements Serializable {
         this.nazivLige = nazivLige;
     }
 
+    public String getSlika() {
+        return slika;
+    }
+
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }
+
     public List<Kolo> getListaKola() {
         return listaKola;
     }
@@ -143,5 +154,5 @@ public class Sezona implements Serializable {
         }
         return true;
     }
-    
+
 }

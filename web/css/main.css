@@ -153,6 +153,13 @@ input[type=submit]{
     margin-bottom: 15px;
 }
 
+.status-neuspeh{
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 15px;
+}
+
 .liga-stranica{
     padding: 30px 20px 0 20px;
 }
@@ -215,4 +222,17 @@ table{
 .klub-igraci{
     margin: 20px;
     padding-top: 20px;
+}
+
+.sezona-slika{
+    max-height: 100px;
+    max-width: 100px;
+}
+
+tr>th, tr>td {
+    text-align: center;
+}
+
+tr .naziv-kluba {
+    text-align: left;
 }
